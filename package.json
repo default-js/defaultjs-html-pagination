@@ -1,7 +1,7 @@
 {
 	"name": "@default-js/defaultjs-html-pagination",
 	"buildname": "defaultjs-html-pagination",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "web component for pagination",
 	"main": "./index.js",
 	"scripts": {
