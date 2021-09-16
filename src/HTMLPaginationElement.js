@@ -2,7 +2,6 @@ import { privateProperty } from "@default-js/defaultjs-common-utils/src/PrivateP
 import { toNodeName, define } from "@default-js/defaultjs-html-components/src/utils/DefineComponentHelper";
 import { componentEventname } from "@default-js/defaultjs-html-components/src/utils/EventHelper";
 import { Renderer, Template } from "@default-js/defaultjs-template-language";
-import { loadTemplate, ATTR_TEMPLATE } from "@default-js/defaultjs-html-components/src/utils/TemplateHelper";
 import Component from "@default-js/defaultjs-html-components/src/Component";
 
 const NODENAME = toNodeName("pagination");
@@ -49,7 +48,7 @@ const ATTR_COUNT = "count";
 const ATTR_SIZE = "size";
 const ATTR_DISABLED_SHADOW_DOM = "disabled-shadow-dom";
 const ATTR_DATA_PAGE = "data-page";
-const ATTRIBUTES = [ATTR_PAGE, ATTR_COUNT, ATTR_SIZE, ATTR_TEMPLATE];
+const ATTRIBUTES = [ATTR_PAGE, ATTR_COUNT, ATTR_SIZE, "template"];
 
 const EVENT__TO_PAGE = componentEventname("to-page", NODENAME);
 const EVENT__CHANGE = componentEventname("change", NODENAME);
@@ -73,7 +72,7 @@ class HTMLPaginationElement extends Component {
 		await super.init();
 		if (!this.ready.resolved) {
 			const defaultTemplate = await TEMPLATE;
-			const template = await loadTemplate(this, defaultTemplate);
+			const template = await Template.loadNodeTemplate(this, defaultTemplate, false);
 			if (!this.disabledShadowDom && template != defaultTemplate)
 				this.attachShadow({ mode: "open" });
 			this.root.on("click", (event) => {
